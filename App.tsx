@@ -2,9 +2,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context'; // Added this
 import { Home, LayoutGrid, User, Info } from 'lucide-react-native';
 
+// Import your actual screens
 import HomeScreen from './src/screens/HomeScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 
 type RootTabParamList = {
   Home: undefined;
@@ -26,27 +29,54 @@ const SOSButton = ({ onPress }: { onPress?: () => void }) => (
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarStyle: styles.tabBar,
-          tabBarActiveTintColor: '#1F3C75',
-          tabBarInactiveTintColor: '#94A3B8',
-        }}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} 
-          options={{ tabBarIcon: ({color}) => <Home color={color} size={24} /> }} />
-        <Tab.Screen name="Services" component={View} 
-          options={{ tabBarIcon: ({color}) => <LayoutGrid color={color} size={24} /> }} />
-        <Tab.Screen name="SOS" component={View} 
-          options={{ tabBarButton: (props) => <SOSButton {...props} />, tabBarLabel: () => null }} />
-        <Tab.Screen name="Profile" component={View} 
-          options={{ tabBarIcon: ({color}) => <User color={color} size={24} /> }} />
-        <Tab.Screen name="Version" component={View} 
-          options={{ tabBarIcon: ({color}) => <Info color={color} size={24} />, tabBarLabel: 'Version' }} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider> 
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false,
+            tabBarStyle: styles.tabBar,
+            tabBarActiveTintColor: '#1F3C75',
+            tabBarInactiveTintColor: '#94A3B8',
+          }}
+        >
+          <Tab.Screen 
+            name="Home" 
+            component={HomeScreen}
+            options={{ tabBarIcon: ({ color }) => <Home color={color} size={24} /> }} 
+          />
+          
+          <Tab.Screen 
+            name="Services" 
+            component={View} // Placeholder until we build it
+            options={{ tabBarIcon: ({ color }) => <LayoutGrid color={color} size={24} /> }} 
+          />
+          
+          <Tab.Screen 
+            name="SOS" 
+            component={View}
+            options={{ 
+              tabBarButton: (props) => <SOSButton {...props} />, 
+              tabBarLabel: () => null 
+            }} 
+          />
+          
+          <Tab.Screen 
+            name="Profile" 
+            component={ProfileScreen} // Points to your new Profile page
+            options={{ tabBarIcon: ({ color }) => <User color={color} size={24} /> }} 
+          />
+          
+          <Tab.Screen 
+            name="Version" 
+            component={View}
+            options={{ 
+              tabBarIcon: ({ color }) => <Info color={color} size={24} />, 
+              tabBarLabel: 'Version' 
+            }} 
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
