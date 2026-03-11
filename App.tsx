@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context'; // Added this
 import { Home, LayoutGrid, User, Info } from 'lucide-react-native';
+import ServicesScreen from './src/screens/ServicesScreen';
 
 // Import your actual screens
 import HomeScreen from './src/screens/HomeScreen';
@@ -29,7 +30,7 @@ const SOSButton = ({ onPress }: { onPress?: () => void }) => (
 
 export default function App() {
   return (
-    <SafeAreaProvider> 
+    <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
@@ -39,41 +40,44 @@ export default function App() {
             tabBarInactiveTintColor: '#94A3B8',
           }}
         >
-          <Tab.Screen 
-            name="Home" 
+          <Tab.Screen
+            name="Home"
             component={HomeScreen}
-            options={{ tabBarIcon: ({ color }) => <Home color={color} size={24} /> }} 
+            options={{ tabBarIcon: ({ color }) => <Home color={color} size={24} /> }}
           />
-          
-          <Tab.Screen 
-            name="Services" 
-            component={View} // Placeholder until we build it
-            options={{ tabBarIcon: ({ color }) => <LayoutGrid color={color} size={24} /> }} 
+
+          <Tab.Screen
+            name="Services"
+            component={ServicesScreen}
+            options={{
+              tabBarIcon: ({ color }) => <LayoutGrid color={color} size={24} />
+            }}
           />
-          
-          <Tab.Screen 
-            name="SOS" 
+
+          <Tab.Screen
+            name="SOS"
             component={View}
-            options={{ 
-              tabBarButton: (props) => <SOSButton {...props} />, 
-              tabBarLabel: () => null 
-            }} 
+            options={{
+              tabBarButton: (props) => <SOSButton {...props} />,
+              tabBarLabel: () => null
+            }}
           />
-          
-          <Tab.Screen 
-            name="Profile" 
+
+          <Tab.Screen
+            name="Profile"
             component={ProfileScreen} // Points to your new Profile page
-            options={{ tabBarIcon: ({ color }) => <User color={color} size={24} /> }} 
+            options={{ tabBarIcon: ({ color }) => <User color={color} size={24} /> }}
           />
-          
-          <Tab.Screen 
-            name="Version" 
+
+          <Tab.Screen
+            name="Version"
             component={View}
-            options={{ 
-              tabBarIcon: ({ color }) => <Info color={color} size={24} />, 
-              tabBarLabel: 'Version' 
-            }} 
+            options={{
+              tabBarIcon: ({ color }) => <Info color={color} size={24} />,
+              tabBarLabel: 'Version'
+            }}
           />
+
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

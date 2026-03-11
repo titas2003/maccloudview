@@ -5,7 +5,8 @@ import { Scale, Briefcase, Calendar, ChevronLeft, UserCircle } from 'lucide-reac
 
 const { width } = Dimensions.get('window');
 
-const HomeScreen = () => {
+// 1. Receive the navigation prop here
+const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Bar */}
@@ -14,26 +15,27 @@ const HomeScreen = () => {
           <ChevronLeft color="#1F3C75" size={24} />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
+        
         <Text style={styles.logoText}>Advocacy</Text>
-        <TouchableOpacity>
+        
+        {/* 2. Added onPress to navigate to 'Profile' */}
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <UserCircle color="#1F3C75" size={32} />
         </TouchableOpacity>
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        {/* ... rest of your code remains exactly the same ... */}
         
-        {/* WIDER HERO CARD */}
         <LinearGradient 
           colors={['#2B4C8C', '#162D59']} 
           start={{x: 0, y: 0}} end={{x: 1, y: 0}}
           style={styles.heroCard}
         >
-          {/* Icon pushed far left and made slightly transparent */}
           <View style={styles.heroIconWrapper}>
             <Scale color="rgba(255,255,255,0.15)" size={140} />
           </View>
           
-          {/* Content pushed far right */}
           <View style={styles.heroTextContainer}>
             <Text style={styles.heroTitle}>MY LEGAL{"\n"}ADVISORY</Text>
             <Text style={styles.heroSub}>Find and contact your selected verified lawyer</Text>
@@ -43,7 +45,6 @@ const HomeScreen = () => {
           </View>
         </LinearGradient>
 
-        {/* BENTO GRID */}
         <View style={styles.gridRow}>
           <View style={[styles.gridCard, { backgroundColor: '#F0F9F1' }]}>
             <Briefcase color="#1F3C75" size={48} />
@@ -62,7 +63,6 @@ const HomeScreen = () => {
           </View>
         </View>
 
-        {/* NEXT APPOINTMENT */}
         <View style={styles.apptCard}>
            <View style={{flex: 1}}>
              <Text style={styles.apptLabel}>NEXT APPOINTMENT</Text>
@@ -73,11 +73,12 @@ const HomeScreen = () => {
              <Text style={styles.checkInText}>Check-in</Text>
            </TouchableOpacity>
         </View>
-
       </ScrollView>
     </SafeAreaView>
   );
 };
+
+// ... keep your styles the same ...
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#FFFFFF' },
