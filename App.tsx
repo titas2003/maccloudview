@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context'; // Added this
+import { View, Text, TouchableOpacity, StyleSheet, Platform, ActivityIndicator } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { Home, LayoutGrid, User, Info } from 'lucide-react-native';
-import ServicesScreen from './src/screens/ServicesScreen';
 
-// Import your actual screens
+// Screen Imports
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import ServicesScreen from './src/screens/ServicesScreen';
+import LandingScreen from './src/screens/LandingScreen'; 
 
 type RootTabParamList = {
   Home: undefined;
@@ -29,6 +31,44 @@ const SOSButton = ({ onPress }: { onPress?: () => void }) => (
 );
 
 export default function App() {
+  const [isFirstLaunch, setIsFirstLaunch] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    // Check if app has been launched before
+    AsyncStorage.getItem('alreadyLaunched').then(value => {
+      if (value === null) {
+        setIsFirstLaunch(true);
+      } else {
+        setIsFirstLaunch(false);
+      }
+    });
+  }, []);
+
+  const handleCompleteOnboarding = async () => {
+    // Mark as launched and enter the main app
+    await AsyncStorage.setItem('alreadyLaunched', 'true');
+    setIsFirstLaunch(false);
+  };
+
+  // Show a loader while checking storage
+  if (isFirstLaunch === null) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#1F3C75" />
+      </View>
+    );
+  }
+
+  // Render Landing Page only on the very first installation
+  if (isFirstLaunch) {
+    return (
+      <SafeAreaProvider>
+        <LandingScreen onComplete={handleCompleteOnboarding} />
+      </SafeAreaProvider>
+    );
+  }
+
+  // Main App Navigation
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -65,7 +105,7 @@ export default function App() {
 
           <Tab.Screen
             name="Profile"
-            component={ProfileScreen} // Points to your new Profile page
+            component={ProfileScreen}
             options={{ tabBarIcon: ({ color }) => <User color={color} size={24} /> }}
           />
 
@@ -77,7 +117,6 @@ export default function App() {
               tabBarLabel: 'Version'
             }}
           />
-
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
@@ -85,6 +124,12 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+  },
   tabBar: {
     height: Platform.OS === 'ios' ? 85 : 65,
     paddingBottom: Platform.OS === 'ios' ? 25 : 10,
