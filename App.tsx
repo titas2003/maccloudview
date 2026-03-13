@@ -6,7 +6,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Platform, ActivityIndicator }
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Home, LayoutGrid, User, Info } from 'lucide-react-native';
-
+import './src/i18n';
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import ServicesScreen from './src/screens/ServicesScreen';
