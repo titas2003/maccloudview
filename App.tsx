@@ -1,26 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text, TouchableOpacity, StyleSheet, Platform, ActivityIndicator } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Home, LayoutGrid, User, Info } from 'lucide-react-native';
 
-// Screen Imports
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import ServicesScreen from './src/screens/ServicesScreen';
-import LandingScreen from './src/screens/LandingScreen'; 
+import LandingScreen from './src/screens/LandingScreen';
+import LegalConsultationScreen from './src/screens/services/LegalConsultationScreen';
 
 type RootTabParamList = {
   Home: undefined;
-  Services: undefined;
+  ServicesStack: undefined;
   SOS: undefined;
   Profile: undefined;
   Version: undefined;
 };
 
+type ServicesStackParamList = {
+  ServicesMain: undefined;
+  LegalConsultation: undefined;
+};
+
 const Tab = createBottomTabNavigator<RootTabParamList>();
+const Stack = createStackNavigator<ServicesStackParamList>();
+
+function ServicesStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="ServicesMain" component={ServicesScreen} />
+      <Stack.Screen name="LegalConsultation" component={LegalConsultationScreen} />
+    </Stack.Navigator>
+  );
+}
 
 const SOSButton = ({ onPress }: { onPress?: () => void }) => (
   <TouchableOpacity onPress={onPress} activeOpacity={0.9} style={styles.sosContainer}>
@@ -34,23 +50,17 @@ export default function App() {
   const [isFirstLaunch, setIsFirstLaunch] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Check if app has been launched before
     AsyncStorage.getItem('alreadyLaunched').then(value => {
-      if (value === null) {
-        setIsFirstLaunch(true);
-      } else {
-        setIsFirstLaunch(false);
-      }
+      if (value === null) setIsFirstLaunch(true);
+      else setIsFirstLaunch(false);
     });
   }, []);
 
   const handleCompleteOnboarding = async () => {
-    // Mark as launched and enter the main app
     await AsyncStorage.setItem('alreadyLaunched', 'true');
     setIsFirstLaunch(false);
   };
 
-  // Show a loader while checking storage
   if (isFirstLaunch === null) {
     return (
       <View style={styles.loadingContainer}>
@@ -59,7 +69,6 @@ export default function App() {
     );
   }
 
-  // Render Landing Page only on the very first installation
   if (isFirstLaunch) {
     return (
       <SafeAreaProvider>
@@ -68,7 +77,6 @@ export default function App() {
     );
   }
 
-  // Main App Navigation
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -83,13 +91,16 @@ export default function App() {
           <Tab.Screen
             name="Home"
             component={HomeScreen}
-            options={{ tabBarIcon: ({ color }) => <Home color={color} size={24} /> }}
+            options={{
+              tabBarIcon: ({ color }) => <Home color={color} size={24} />
+            }}
           />
 
           <Tab.Screen
-            name="Services"
-            component={ServicesScreen}
+            name="ServicesStack"
+            component={ServicesStack}
             options={{
+              tabBarLabel: 'Services',
               tabBarIcon: ({ color }) => <LayoutGrid color={color} size={24} />
             }}
           />
@@ -106,15 +117,17 @@ export default function App() {
           <Tab.Screen
             name="Profile"
             component={ProfileScreen}
-            options={{ tabBarIcon: ({ color }) => <User color={color} size={24} /> }}
+            options={{
+              tabBarIcon: ({ color }) => <User color={color} size={24} />
+            }}
           />
 
           <Tab.Screen
             name="Version"
             component={View}
             options={{
-              tabBarIcon: ({ color }) => <Info color={color} size={24} />,
-              tabBarLabel: 'Version'
+              tabBarLabel: 'Version',
+              tabBarIcon: ({ color }) => <Info color={color} size={24} />
             }}
           />
         </Tab.Navigator>
@@ -124,28 +137,27 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
+  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+
   tabBar: {
     height: Platform.OS === 'ios' ? 85 : 65,
     paddingBottom: Platform.OS === 'ios' ? 25 : 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FFF',
     borderTopWidth: 0,
-    elevation: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
   },
+
   sosContainer: { top: -30, justifyContent: 'center', alignItems: 'center' },
+
   sosButton: {
-    width: 75, height: 75, borderRadius: 37.5, backgroundColor: '#D32F2F',
-    justifyContent: 'center', alignItems: 'center', borderWidth: 5, borderColor: '#FFFFFF',
-    shadowColor: '#D32F2F', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.5, shadowRadius: 12,
+    width: 75,
+    height: 75,
+    borderRadius: 37.5,
+    backgroundColor: '#D32F2F',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 5,
+    borderColor: '#FFF'
   },
-  sosText: { color: 'white', fontWeight: '900', fontSize: 22 },
+
+  sosText: { color: 'white', fontWeight: '900', fontSize: 22 }
 });
