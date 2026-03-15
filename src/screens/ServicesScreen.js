@@ -8,7 +8,8 @@ import i18n from '../i18n';
 
 const ALL_SERVICES = (t) => [
   { id: '1', title: t('legalConsultation'), category: t('general'), icon: Gavel, route: 'LegalConsultation' },
-  { id: '2', title: t('legalAdvice'), category: t('general'), icon: FileText }, 
+  // { id: '2', title: t('legalAdvice'), category: t('general'), icon: FileText }, 
+  { id: '2', title: t('legalAdvice'), category: t('general'), icon: FileText, route: 'LegalAdvice' },
   { id: '3', title: t('legalDocumentDrafting'), category: t('documentation'), icon: Briefcase }, 
   { id: '4', title: t('legalDocumentReview'), category: t('documentation'), icon: Briefcase }, 
   { id: '5', title: t('contractDrafting'), category: t('corporate'), icon: Landmark }, 

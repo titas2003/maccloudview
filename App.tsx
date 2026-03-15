@@ -12,6 +12,7 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import ServicesScreen from './src/screens/ServicesScreen';
 import LandingScreen from './src/screens/LandingScreen';
 import LegalConsultationScreen from './src/screens/services/LegalConsultationScreen';
+import LegalAdviceScreen from './src/screens/services/LegalAdviceScreen';
 
 type RootTabParamList = {
   Home: undefined;
@@ -34,6 +35,7 @@ function ServicesStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ServicesMain" component={ServicesScreen} />
       <Stack.Screen name="LegalConsultation" component={LegalConsultationScreen} />
+      <Stack.Screen name="LegalAdvice" component={LegalAdviceScreen} />
     </Stack.Navigator>
   );
 }
