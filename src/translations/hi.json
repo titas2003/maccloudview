@@ -1,31 +1,60 @@
 {
   "legalConsultation": "कानूनी परामर्श",
+  "legalServices": "कानूनी सेवाएं",
+  "searchLegalIssue": "अपनी कानूनी समस्या बताएं...",
+
+  "logout": "लॉगआउट",
+
+  "myLegalAdvisory": "मेरा कानूनी सलाहकार",
+  "findLawyer": "अपने चुने हुए सत्यापित वकील को खोजें और संपर्क करें",
+  "viewAdvisorProfile": "सलाहकार प्रोफ़ाइल देखें",
+
+  "legalDocument": "कानूनी दस्तावेज",
+  "manageDocs": "दस्तावेज़ प्रबंधित करें",
+
+  "bookAppointment": "अपॉइंटमेंट बुक करें",
+  "scheduleNow": "अभी शेड्यूल करें",
+
+  "nextAppointment": "अगली अपॉइंटमेंट",
+  "checkIn": "चेक-इन",
 
   "justiceQuote": "न्याय में देरी, न्याय से वंचित होने के समान है",
-
   "bannerSubtitle": "शीर्ष वकीलों से तुरंत और भरोसेमंद कानूनी सलाह प्राप्त करें।",
 
   "aboutService": "सेवा के बारे में",
-
   "serviceDescription": "हमारी कानूनी परामर्श सेवा आपको विभिन्न कानूनी क्षेत्रों के अनुभवी और सत्यापित वकीलों से जोड़ती है। चाहे आपको किसी साधारण अनुबंध की समीक्षा चाहिए या जटिल मुकदमेबाजी पर सलाह, हम आपके अधिकारों की रक्षा सुनिश्चित करते हैं।",
 
   "areasOfExpertise": "विशेषज्ञता के क्षेत्र",
-
   "talkLawyer": "अभी एक वकील से बात करें",
 
-  "familyLaw": "पारिवारिक कानून",
+  "general": "सामान्य",
+  "documentation": "दस्तावेज़ीकरण",
+  "corporate": "कॉर्पोरेट",
+  "personal": "व्यक्तिगत",
+  "property": "संपत्ति",
+  "litigation": "मुकदमेबाजी",
 
+  "legalAdvice": "कानूनी सलाह",
+  "legalDocumentDrafting": "कानूनी दस्तावेज़ ड्राफ्टिंग",
+  "legalDocumentReview": "कानूनी दस्तावेज़ समीक्षा",
+  "contractDrafting": "अनुबंध ड्राफ्टिंग",
+  "contractReview": "अनुबंध समीक्षा",
+  "legalNoticeDrafting": "कानूनी नोटिस ड्राफ्टिंग",
+  "replyLegalNotice": "कानूनी नोटिस का उत्तर",
+  "affidavitPreparation": "हलफ़नामा तैयार करना",
+  "powerOfAttorney": "पावर ऑफ अटॉर्नी ड्राफ्टिंग",
+  "agreementDrafting": "समझौता ड्राफ्टिंग (किराया आदि)",
+  "caseFiling": "मामला दाखिल करने में सहायता",
+
+  "familyLaw": "पारिवारिक कानून",
   "familyLawDesc": "तलाक, बच्चों की अभिरक्षा और मध्यस्थता से संबंधित सहायता।",
 
   "criminalDefense": "आपराधिक बचाव",
-
   "criminalDefenseDesc": "विशेषज्ञ कानूनी प्रतिनिधित्व और बचाव सेवाएं।",
 
   "corporateLaw": "कॉर्पोरेट कानून",
-
   "corporateLawDesc": "व्यापारिक अनुबंध, बौद्धिक संपदा और विवाद समाधान।",
 
   "civilLitigation": "दीवानी मुकदमेबाजी",
-
   "civilLitigationDesc": "संपत्ति विवाद और अधिकारों की सुरक्षा के लिए कानूनी सहायता।"
 }

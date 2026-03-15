@@ -1,31 +1,60 @@
 {
   "legalConsultation": "Legal Consultation",
+  "legalServices": "Legal Services",
+  "searchLegalIssue": "Describe your legal issue...",
+
+  "logout": "Logout",
+
+  "myLegalAdvisory": "My Legal Advisory",
+  "findLawyer": "Find and connect with your selected verified lawyer",
+  "viewAdvisorProfile": "View Advisor Profile",
+
+  "legalDocument": "Legal Documents",
+  "manageDocs": "Manage Documents",
+
+  "bookAppointment": "Book Appointment",
+  "scheduleNow": "Schedule Now",
+
+  "nextAppointment": "Next Appointment",
+  "checkIn": "Check In",
 
   "justiceQuote": "Justice Delayed is Justice Denied",
-
   "bannerSubtitle": "Get immediate expert legal guidance from top advocates.",
 
   "aboutService": "About the Service",
-
   "serviceDescription": "Our legal consultation service connects you with verified legal experts who specialize in various fields of law. Whether you need a simple contract review or complex litigation advice, we ensure your rights are protected.",
 
   "areasOfExpertise": "Areas of Expertise",
-
   "talkLawyer": "Talk to a Lawyer Now",
 
-  "familyLaw": "Family Law",
+  "general": "General",
+  "documentation": "Documentation",
+  "corporate": "Corporate",
+  "personal": "Personal",
+  "property": "Property",
+  "litigation": "Litigation",
 
+  "legalAdvice": "Legal Advice",
+  "legalDocumentDrafting": "Legal Document Drafting",
+  "legalDocumentReview": "Legal Document Review",
+  "contractDrafting": "Contract Drafting",
+  "contractReview": "Contract Review",
+  "legalNoticeDrafting": "Legal Notice Drafting",
+  "replyLegalNotice": "Reply to Legal Notice",
+  "affidavitPreparation": "Affidavit Preparation",
+  "powerOfAttorney": "Power of Attorney Drafting",
+  "agreementDrafting": "Agreement Drafting (Rent, etc.)",
+  "caseFiling": "Case Filing Assistance",
+
+  "familyLaw": "Family Law",
   "familyLawDesc": "Divorce, custody, and mediation support.",
 
   "criminalDefense": "Criminal Defense",
-
   "criminalDefenseDesc": "Expert legal representation and defense.",
 
   "corporateLaw": "Corporate Law",
-
   "corporateLawDesc": "Business contracts, intellectual property, and dispute resolution.",
 
   "civilLitigation": "Civil Litigation",
-
   "civilLitigationDesc": "Property disputes and rights protection."
 }

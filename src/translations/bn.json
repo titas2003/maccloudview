@@ -1,31 +1,60 @@
 {
   "legalConsultation": "আইনি পরামর্শ",
+  "legalServices": "আইনি সেবা",
+  "searchLegalIssue": "আপনার আইনি সমস্যা বর্ণনা করুন...",
+
+  "logout": "লগআউট",
+
+  "myLegalAdvisory": "আমার আইনি পরামর্শদাতা",
+  "findLawyer": "আপনার নির্বাচিত যাচাইকৃত আইনজীবী খুঁজুন এবং যোগাযোগ করুন",
+  "viewAdvisorProfile": "পরামর্শদাতার প্রোফাইল দেখুন",
+
+  "legalDocument": "আইনি নথি",
+  "manageDocs": "নথি পরিচালনা করুন",
+
+  "bookAppointment": "অ্যাপয়েন্টমেন্ট বুক করুন",
+  "scheduleNow": "এখনই সময় নির্ধারণ করুন",
+
+  "nextAppointment": "পরবর্তী অ্যাপয়েন্টমেন্ট",
+  "checkIn": "চেক-ইন",
 
   "justiceQuote": "বিচারে বিলম্ব মানেই ন্যায়বিচার থেকে বঞ্চিত হওয়া",
-
   "bannerSubtitle": "শীর্ষ আইনজীবীদের কাছ থেকে দ্রুত এবং নির্ভরযোগ্য আইনি পরামর্শ নিন।",
 
   "aboutService": "সেবাটি সম্পর্কে",
-
   "serviceDescription": "আমাদের আইনি পরামর্শ সেবা আপনাকে বিভিন্ন আইনের ক্ষেত্রে দক্ষ ও যাচাইকৃত আইনজীবীদের সাথে সংযুক্ত করে। সাধারণ চুক্তি পর্যালোচনা থেকে জটিল মামলার পরামর্শ পর্যন্ত আমরা আপনার অধিকার রক্ষায় সহায়তা করি।",
 
   "areasOfExpertise": "দক্ষতার ক্ষেত্রসমূহ",
-
   "talkLawyer": "এখনই একজন আইনজীবীর সাথে কথা বলুন",
 
-  "familyLaw": "পারিবারিক আইন",
+  "general": "সাধারণ",
+  "documentation": "নথিপত্র",
+  "corporate": "কর্পোরেট",
+  "personal": "ব্যক্তিগত",
+  "property": "সম্পত্তি",
+  "litigation": "মামলা",
 
+  "legalAdvice": "আইনি পরামর্শ",
+  "legalDocumentDrafting": "আইনি নথি খসড়া তৈরি",
+  "legalDocumentReview": "আইনি নথি পর্যালোচনা",
+  "contractDrafting": "চুক্তি খসড়া তৈরি",
+  "contractReview": "চুক্তি পর্যালোচনা",
+  "legalNoticeDrafting": "আইনি নোটিশ খসড়া",
+  "replyLegalNotice": "আইনি নোটিশের জবাব",
+  "affidavitPreparation": "হলফনামা প্রস্তুতি",
+  "powerOfAttorney": "পাওয়ার অফ অ্যাটর্নি খসড়া",
+  "agreementDrafting": "চুক্তি খসড়া (ভাড়া ইত্যাদি)",
+  "caseFiling": "মামলা দায়ের সহায়তা",
+
+  "familyLaw": "পারিবারিক আইন",
   "familyLawDesc": "ডিভোর্স, সন্তানের হেফাজত এবং মধ্যস্থতা সংক্রান্ত সহায়তা।",
 
   "criminalDefense": "ফৌজদারি প্রতিরক্ষা",
-
   "criminalDefenseDesc": "বিশেষজ্ঞ আইনি প্রতিনিধিত্ব ও প্রতিরক্ষা সেবা।",
 
   "corporateLaw": "কর্পোরেট আইন",
-
   "corporateLawDesc": "ব্যবসায়িক চুক্তি, মেধাস্বত্ব এবং বিরোধ নিষ্পত্তি।",
 
   "civilLitigation": "দেওয়ানি মামলা",
-
   "civilLitigationDesc": "সম্পত্তি বিরোধ এবং অধিকার সুরক্ষার জন্য আইনি সহায়তা।"
 }
