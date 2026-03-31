@@ -6,14 +6,22 @@ import { View, Text, TouchableOpacity, StyleSheet, Platform, ActivityIndicator }
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Home, LayoutGrid, User, Info } from 'lucide-react-native';
+
 import './src/i18n';
+
+// Screens
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import ServicesScreen from './src/screens/ServicesScreen';
 import LandingScreen from './src/screens/LandingScreen';
 import LegalConsultationScreen from './src/screens/services/LegalConsultationScreen';
 import LegalAdviceScreen from './src/screens/services/LegalAdviceScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
+// Permissions
+import { checkPermissions, requestPermissions } from './src/utils/permissions';
+
+// Types
 type RootTabParamList = {
   Home: undefined;
   ServicesStack: undefined;
@@ -25,11 +33,14 @@ type RootTabParamList = {
 type ServicesStackParamList = {
   ServicesMain: undefined;
   LegalConsultation: undefined;
+  LegalAdvice: undefined;
 };
 
+// Navigators
 const Tab = createBottomTabNavigator<RootTabParamList>();
 const Stack = createStackNavigator<ServicesStackParamList>();
 
+// Services Stack
 function ServicesStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -40,6 +51,7 @@ function ServicesStack() {
   );
 }
 
+// SOS Button
 const SOSButton = ({ onPress }: { onPress?: () => void }) => (
   <TouchableOpacity onPress={onPress} activeOpacity={0.9} style={styles.sosContainer}>
     <View style={styles.sosButton}>
@@ -49,21 +61,57 @@ const SOSButton = ({ onPress }: { onPress?: () => void }) => (
 );
 
 export default function App() {
+
   const [isFirstLaunch, setIsFirstLaunch] = useState<boolean | null>(null);
+  const [hasPermissions, setHasPermissions] = useState<boolean | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
-    AsyncStorage.getItem('alreadyLaunched').then(value => {
-      if (value === null) setIsFirstLaunch(true);
-      else setIsFirstLaunch(false);
-    });
+    const initApp = async () => {
+
+      // 1. Check onboarding
+      const launch = await AsyncStorage.getItem('alreadyLaunched');
+      if (launch === null) {
+        setIsFirstLaunch(true);
+      } else {
+        setIsFirstLaunch(false);
+      }
+
+      // 2. Check permissions
+      const granted = await checkPermissions();
+      if (granted) {
+        setHasPermissions(true);
+      } else {
+        const requested = await requestPermissions();
+        setHasPermissions(requested);
+      }
+
+      // 3. Check login
+      const login = await AsyncStorage.getItem('isLoggedIn');
+      setIsLoggedIn(login === 'true');
+    };
+
+    initApp();
   }, []);
 
+  // After onboarding complete
   const handleCompleteOnboarding = async () => {
     await AsyncStorage.setItem('alreadyLaunched', 'true');
     setIsFirstLaunch(false);
   };
 
-  if (isFirstLaunch === null) {
+  // After login
+  const handleLogin = async () => {
+    await AsyncStorage.setItem('isLoggedIn', 'true');
+    setIsLoggedIn(true);
+  };
+
+  // Loading state
+  if (
+    isFirstLaunch === null ||
+    hasPermissions === null ||
+    isLoggedIn === null
+  ) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#1F3C75" />
@@ -71,6 +119,7 @@ export default function App() {
     );
   }
 
+  // 1. First Launch → Landing
   if (isFirstLaunch) {
     return (
       <SafeAreaProvider>
@@ -79,6 +128,27 @@ export default function App() {
     );
   }
 
+  // 2. Permissions required
+  if (!hasPermissions) {
+    return (
+      <SafeAreaProvider>
+        <View style={styles.loadingContainer}>
+          <Text>Permissions are required to continue</Text>
+        </View>
+      </SafeAreaProvider>
+    );
+  }
+
+  // 3. Login required
+  if (!isLoggedIn) {
+    return (
+      <SafeAreaProvider>
+        <LoginScreen onLogin={handleLogin} />
+      </SafeAreaProvider>
+    );
+  }
+
+  // 4. MAIN APP (your existing UI untouched)
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -138,8 +208,14 @@ export default function App() {
   );
 }
 
+// Styles
 const styles = StyleSheet.create({
-  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 
   tabBar: {
     height: Platform.OS === 'ios' ? 85 : 65,
@@ -148,7 +224,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
   },
 
-  sosContainer: { top: -30, justifyContent: 'center', alignItems: 'center' },
+  sosContainer: {
+    top: -30,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 
   sosButton: {
     width: 75,
@@ -161,5 +241,10 @@ const styles = StyleSheet.create({
     borderColor: '#FFF'
   },
 
-  sosText: { color: 'white', fontWeight: '900', fontSize: 22 }
+  sosText: {
+    color: 'white',
+    fontWeight: '900',
+    fontSize: 22
+  }
+
 });
