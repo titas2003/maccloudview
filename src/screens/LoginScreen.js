@@ -9,10 +9,15 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Feather";
 import LottieView from "lottie-react-native";
+import SignupScreen from "./SignupScreen";
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showSignup, setShowSignup] = useState(false);
+    if (showSignup) {
+        return <SignupScreen goBack={() => setShowSignup(false)} />;
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -62,6 +67,7 @@ const LoginScreen = ({ navigation }) => {
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
 
+
                 {/* Divider */}
                 <View style={styles.dividerContainer}>
                     <View style={styles.line} />
@@ -85,7 +91,10 @@ const LoginScreen = ({ navigation }) => {
                     <Text style={styles.footerText}>
                         Don't have an account?
                     </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                    {/* <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                        <Text style={styles.signup}> Sign Up</Text>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setShowSignup(true)}>
                         <Text style={styles.signup}> Sign Up</Text>
                     </TouchableOpacity>
                 </View>
@@ -105,7 +114,7 @@ const styles = StyleSheet.create({
     lottie: {
         backgroundColor: "#093c3e",
         width: "100%",
-        height: 250,
+        height: 350,
     },
 
     card: {
