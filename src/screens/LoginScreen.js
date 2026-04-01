@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
             {/* Card */}
             <View style={styles.card}>
                 <Text style={styles.title}>Welcome Back</Text>
-                <Text style={styles.subtitle}>Login to continue</Text>
+                <Text style={styles.subtitle}>Advocacy at your service</Text>
 
                 {/* Email */}
                 <View style={styles.inputContainer}>

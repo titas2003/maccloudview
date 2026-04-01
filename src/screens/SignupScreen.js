@@ -29,7 +29,7 @@ const SignupScreen = ({ goBack }) => {
       {/* Card */}
       <View style={styles.card}>
         <Text style={styles.title}>Create Account</Text>
-        <Text style={styles.subtitle}>Sign up to continue</Text>
+        <Text style={styles.subtitle}>Allow Advocacy at your service</Text>
 
         {/* Name */}
         <View style={styles.inputContainer}>
