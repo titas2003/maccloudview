@@ -58,7 +58,10 @@ const SignupScreen = ({ goBack }) => {
             console.log("Signup Response:", data);
 
             if (response.ok) {
-                Alert.alert("Success", "User registered successfully");
+                Alert.alert(
+                    "Registration Successful 🎉",
+                    `Your Client ID: ${data?.user?.clientId}`
+                );
 
                 // Reset form
                 setName("");
